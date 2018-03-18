@@ -25,12 +25,12 @@ contract ZombieHelper is ZombieFeeding {
   }
 
   // 1. Modify this function to use `ownerOf`:
-  function changeName(uint _zombieId, string _newName) external aboveLevel(2, _zombieId) ownerOf(_zombieId){
+  function changeName(uint _zombieId, string _newName) external aboveLevel(2, _zombieId) onlyOwnerOf(_zombieId){
     zombies[_zombieId].name = _newName;
   }
 
   // 2. Do the same with this function:
-  function changeDna(uint _zombieId, uint _newDna) external aboveLevel(20, _zombieId) ownerOf(_zombieId){
+  function changeDna(uint _zombieId, uint _newDna) external aboveLevel(20, _zombieId) onlyOwnerOf(_zombieId){
     zombies[_zombieId].dna = _newDna;
   }
 
