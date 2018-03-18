@@ -11,12 +11,16 @@ contract ZombieBattle is ZombieHelper {
     return uint(keccak256(now, msg.sender, randNonce)) % _modulus;
   }
 
-  // 1. Add modifier here
   function attack(uint _zombieId, uint _targetId) external ownerOf(_zombieId) {
-    // 2. Start function definition here
     Zombie storage myZombie = zombies[_zombieId];
     Zombie storage enemyZombie = zombies[_targetId];
     uint rand = randMod(100);
-
+    // Start here
+    if (rand <= attackVictoryProbability) {
+      myZombie.winCount++;
+      myZombie.level++;
+      enemyZombie.lossCount++;
+      feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");
+    }
   }
 }
