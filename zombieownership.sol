@@ -13,17 +13,17 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
     return zombieToOwner[_tokenId];
   }
 
-  // Define _transfer() here
   function _transfer(address _from, address _to, uint256 _tokenId) private {
-      ownerZombieCount[_to]++;
-      ownerZombieCount[_from]--;
-      zombieToOwner[_tokenId]=_to;
-      Transfer(_from, _to, _tokenId);
-
+    ownerZombieCount[_to]++;
+    ownerZombieCount[_from]--;
+    zombieToOwner[_tokenId] = _to;
+    Transfer(_from, _to, _tokenId);
   }
 
-  function transfer(address _to, uint256 _tokenId) public {
-
+  // 1. Add modifier here
+  function transfer(address _to, uint256 _tokenId) public onlyOwnerOf(_tokenId){
+    // 2. Define function here
+    _transfer(msg.sender, _to, _tokenId);
   }
 
   function approve(address _to, uint256 _tokenId) public {
