@@ -17,6 +17,22 @@
         cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
       }
 
+      function getZombieDetails(id) {
+        return cryptoZombies.methods.zombies(id).call()
+      }
+
+      // 1. Define `zombieToOwner` here
+      function zombieToOwner(id) {
+        return cryptoZombies.methods.zombieToOwner(id).call()
+      }
+      
+
+      // 2. Define `getZombiesByOwner` here
+      
+      function getZombiesByOwner(owner) {
+        return cryptoZombies.methods.getZombiesByOwner(owner).call()
+      }
+
       window.addEventListener('load', function() {
 
         // Checking if Web3 has been injected by the browser (Mist/MetaMask)
